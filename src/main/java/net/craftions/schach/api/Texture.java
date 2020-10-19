@@ -12,7 +12,7 @@ public class Texture {
     public Integer height;
 
     public Texture(String path, Integer x, Integer y, Integer width, Integer height) {
-        this.path = path;
+        this.path = "/assets/" + path;
         this.x = x;
         this.y = y;
         this.width = width;
