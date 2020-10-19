@@ -10,10 +10,16 @@ public class GameGUI {
 
     public static void create(){
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jf.setSize(1000, 900);
+        jf.setSize(1000, 1000);
         jf.setLocationRelativeTo(null);
         jf.setResizable(false);
         jf.setLayout(null);
+        jf.removeAll();
+        for(Texture t : textures){
+            JLabel jl = new JLabel(t.getImage());
+            jl.setBounds(t.x, t.y, t.width, t.height);
+            jf.add(jl);
+        }
         jf.setVisible(true);
     }
 /*
