@@ -19,6 +19,22 @@ public class Texture {
         this.height = height;
     }
 
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public void setY(Integer y) {
+        this.y = y;
+    }
+
     public String getPath() {
         return path;
     }
