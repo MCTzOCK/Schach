@@ -3,14 +3,20 @@ package net.craftions.schach;
 import net.craftions.schach.api.Player;
 import net.craftions.schach.api.Texture;
 import net.craftions.schach.config.Config;
-import net.craftions.schach.gui.CreatePlayers;
 import net.craftions.schach.gui.GameGUI;
 import net.craftions.schach.gui.MainMenu;
+import net.craftions.schach.music.BackgroundMusic;
+
+import javax.swing.*;
 
 public class Main {
 
+    public static BackgroundMusic music = null;
+
     // main
     public static void main(String[] args) {
+        MainMenu.create();
+
         System.out.println("Welcome to Schach v1.0");
         // Chess Field
         {
@@ -152,8 +158,11 @@ public class Main {
         Config.player1 = "Lukas";
         Config.player2 = "Ben";
         Config.currentPlayer = "Lukas";
-        GameGUI.create();
+
+        // GameGUI.create();
         // CreatePlayers.init();
         // MainMenu.create();
+        music = new BackgroundMusic();
+        music.start();
     }
 }

@@ -7,6 +7,8 @@ import net.craftions.schach.config.Config;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -28,6 +30,23 @@ public class GameGUI {
         onTurn.setFont(new Font("X-Files", 0, 40));
         jf.add(onTurn);
 
+        JButton pause = new JButton("| |");
+        pause.setSize(50, 50);
+        pause.setLocation(jf.getWidth() - pause.getWidth() - 15, 0);
+        pause.setBackground(new Color(64, 64, 64));
+        pause.setVisible(true);
+        pause.setFont(new Font("Arial", 0, 20));
+        pause.setForeground(Color.white);
+        pause.setFocusable(false);
+        pause.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf.setVisible(false);
+                MainMenu.jf.setVisible(true);
+            }
+        });
+        jf.add(pause);
+
         for(Player p : players){
             JLabel jl = new JLabel(p.getTexture().getImage());
             jl.setBounds(p.getTexture().x, p.getTexture().y, p.getTexture().width, p.getTexture().height);
@@ -40,7 +59,7 @@ public class GameGUI {
             });
             jf.add(jl);
         }
-        for(Texture t : textures){
+        for(Texture t : textures) {
             JLabel jl = new JLabel(t.getImage());
             jl.setBounds(t.x, t.y, t.width, t.height);
             jl.setVisible(true);
@@ -48,25 +67,4 @@ public class GameGUI {
         }
         jf.setVisible(true);
     }
-/*
-    protected static void render(){
-        Thread renderer = new Thread(){
-            @Override
-            public void run() {
-                while(jf.isVisible()){
-                    jf.removeAll();
-                    for(Texture t : textures){
-                        JLabel l = new JLabel(t.getImage());
-                        l.setBounds(t.x, t.y, t.width, t.height);
-                        jf.add(l);
-                    }
-                    jf.repaint();
-                    System.out.println(Math.random() / 1000);
-                }
-                super.run();
-            }
-        };
-        renderer.start();
-    }
-    */
 }

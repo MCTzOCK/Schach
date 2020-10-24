@@ -67,6 +67,13 @@ public class MainMenu {
         new_game.setFont(new Font("Arial", 0, 20));
         new_game.setForeground(Color.white);
         new_game.setFocusable(false);
+        new_game.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf.setVisible(false);
+                GameGUI.create();
+            }
+        });
 
         resume.setSize(jf.getWidth() /4, jf.getHeight() /5);
         resume.setLocation(jf.getWidth() /2 - resume.getWidth() /2, jf.getHeight() /8 *6);

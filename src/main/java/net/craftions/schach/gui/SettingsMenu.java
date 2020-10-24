@@ -1,15 +1,8 @@
 package net.craftions.schach.gui;
 
 import net.craftions.schach.Main;
-import net.craftions.schach.api.Texture;
-import net.craftions.schach.music.BackgroundMusic;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.plaf.metal.MetalBorders;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
