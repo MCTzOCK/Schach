@@ -1,12 +1,18 @@
 package net.craftions.schach.gui;
 
+import net.craftions.schach.Main;
 import net.craftions.schach.api.Texture;
+import net.craftions.schach.music.BackgroundMusic;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.metal.MetalBorders;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SettingsMenu {
     public static JFrame jf = new JFrame();
@@ -51,6 +57,17 @@ public class SettingsMenu {
         music_on.setBounds(jf.getWidth() /4, jf.getHeight() /5 + music.getWidth() /6, 20, 20);
         music_on.setBackground(new Color(128, 128, 128));
         music_on.setVisible(true);
+        music_on.setSelected(true);
+        music_on.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!music_on.isSelected()) {
+                    Main.music.stopPlay();
+                } else if(music_on.isSelected()) {
+                    Main.music.doPlay("/assets/1.wav");
+                }
+            }
+        });
 
         sound.setSize(jf.getWidth() /4, jf.getHeight() /5);
         sound.setLocation((jf.getWidth() /4 * 3) - sound.getWidth() /2, jf.getHeight() /5);
@@ -70,6 +87,27 @@ public class SettingsMenu {
         back.setFont(new Font("Arial", 0, 20));
         back.setForeground(Color.white);
         back.setFocusable(false);
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jf = new JFrame();
+                MainMenu.jf = new JFrame();
+                MainMenu.create();
+                Thread clearMemory = new Thread(){
+                    @Override
+                    public void run() {
+                        System.gc();
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException interruptedException) {
+                            interruptedException.printStackTrace();
+                        }
+                        super.run();
+                    }
+                };
+                clearMemory.start();
+            }
+        });
 
         jf.add(jl);
         jf.add(music);

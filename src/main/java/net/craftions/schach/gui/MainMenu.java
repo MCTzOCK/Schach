@@ -1,13 +1,9 @@
 package net.craftions.schach.gui;
 
 import javax.swing.*;
-import javax.swing.border.AbstractBorder;
-import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainMenu {
     public static JFrame jf = new JFrame();
@@ -26,7 +22,6 @@ public class MainMenu {
         jf.setBounds(width /4, height /4, width /2, height /2);
         jf.setUndecorated(true);
         jf.getContentPane().setBackground(new Color(128, 128, 128));
-        jf.setVisible(true);
 
         jl.setSize(jf.getWidth() /2, jf.getHeight() /5);
         jl.setLocation(jf.getWidth() /2 - jl.getWidth() /2, jf.getHeight() / 14);
@@ -45,9 +40,10 @@ public class MainMenu {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                jf.removeAll();
+                jf = new JFrame();
+                SettingsMenu.jf = new JFrame();
                 SettingsMenu.create();
-                jf.setVisible(false);
-                jf = null;
                 Thread clearMemory = new Thread(){
                     @Override
                     public void run() {
@@ -83,10 +79,11 @@ public class MainMenu {
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setResizable(false);
         jf.setAlwaysOnTop(false);
+        jf.setLayout(null);
         jf.add(jl);
         jf.add(settings);
         jf.add(new_game);
         jf.add(resume);
-        jf.repaint();
+        jf.setVisible(true);
     }
 }
